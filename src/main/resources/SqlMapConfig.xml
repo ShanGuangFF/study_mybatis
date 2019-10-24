@@ -14,7 +14,7 @@
             <dataSource type="POOLED">
                 <!--配置连接数据库的4个基本信息-->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/cc_ff"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/cc_ff?useSSL=false"/>
                 <property name="username" value="cc_ff"/>
                 <property name="password" value="654321"/>
             </dataSource>
@@ -23,6 +23,11 @@
 
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao的独立的配置文件-->
     <mappers>
-        <mapper resource="com/xupt/ff/dao/IUserDao.xml" />
+<!--        <mapper resource="com/xupt/ff/dao/IUserDao.xml" />-->
+
+        <!--如果使用注解的话不能产生IUserDao.xml,否则会产生错误-->
+        <!--如果是使用注解来配置的话，此处应该用class属性指定被注解的dao的全限定类名-->
+        <mapper class="com.xupt.ff.dao.IUserDao"/>
     </mappers>
+
 </configuration>
