@@ -10,6 +10,5 @@ public interface   IUserDao {
      * 查询所有用户
      * @return 包含所用用户的list集合
      */
-    @Select("select * from user")
     List<User> findAll();
 }
