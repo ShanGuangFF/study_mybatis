@@ -20,11 +20,10 @@
 
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao的独立的配置文件-->
     <mappers>
-<!--        <mapper resource="com/xupt/ff/dao/IUserDao.xml" />-->
-
+        <mapper resource="com/xupt/ff/dao/IUserDao.xml" />
         <!--如果使用注解的话不能产生IUserDao.xml,否则会产生错误-->
         <!--如果是使用注解来配置的话，此处应该用class属性指定被注解的dao的全限定类名-->
-        <mapper class="com.xupt.ff.dao.IUserDao"/>
+<!--        <mapper class="com.xupt.ff.dao.IUserDao"/>-->
     </mappers>
 
 </configuration>

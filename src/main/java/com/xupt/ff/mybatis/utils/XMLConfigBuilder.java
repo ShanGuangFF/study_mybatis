@@ -1,15 +1,13 @@
 package com.xupt.ff.mybatis.utils;
 
-import com.itheima.mybatis.annotations.Select;
-import com.itheima.mybatis.io.Resources;
-import com.itheima.mybatis.sqlsession.Configuration;
-import com.itheima.mybatis.sqlsession.defaults.DefaultSqlSession;
-import com.itheima.mybatis.sqlsession.mappers.Mapper;
+import com.xupt.ff.mybatis.cfg.Configuration;
+import com.xupt.ff.mybatis.cfg.Mapper;
+import com.xupt.ff.mybatis.io.mybatisResources;
+import org.apache.ibatis.io.Resources;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -20,8 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 黑马程序员
- * @Company http://www.ithiema.com
+ * @author cc_ff
  *  用于解析配置文件
  */
 public class XMLConfigBuilder {
@@ -86,20 +83,20 @@ public class XMLConfigBuilder {
                     System.out.println("使用的是XML");
                     //表示有resource属性，用的是XML
                     //取出属性的值
-                    String mapperPath = attribute.getValue();//获取属性的值"com/itheima/dao/IUserDao.xml"
+                    String mapperPath = attribute.getValue();//获取属性的值"com/xupt/ff/dao/IUserDao.xml"
                     //把映射配置文件的内容获取出来，封装成一个map
                     Map<String,Mapper> mappers = loadMapperConfiguration(mapperPath);
                     //给configuration中的mappers赋值
                     cfg.setMappers(mappers);
                 }else{
-                    System.out.println("使用的是注解");
+                    /*System.out.println("使用的是注解");
                     //表示没有resource属性，用的是注解
                     //获取class属性的值
                     String daoClassPath = mapperElement.attributeValue("class");
                     //根据daoClassPath获取封装的必要信息
                     Map<String,Mapper> mappers = loadMapperAnnotation(daoClassPath);
                     //给configuration中的mappers赋值
-                    cfg.setMappers(mappers);
+                    cfg.setMappers(mappers);*/
                 }
             }
             //返回Configuration
@@ -126,9 +123,9 @@ public class XMLConfigBuilder {
         InputStream in = null;
         try{
             //定义返回值对象
-            Map<String,Mapper> mappers = new HashMap<String,Mapper>();
+            Map<String, Mapper> mappers = new HashMap<String,Mapper>();
             //1.根据路径获取字节输入流
-            in = Resources.getResourceAsStream(mapperPath);
+            in = mybatisResources.getResourceAsStream(mapperPath);
             //2.根据字节输入流获取Document对象
             SAXReader reader = new SAXReader();
             Document document = reader.read(in);
@@ -169,7 +166,7 @@ public class XMLConfigBuilder {
      * @param daoClassPath
      * @return
      */
-    private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
+    /*private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
         //定义返回值对象
         Map<String,Mapper> mappers = new HashMap<String, Mapper>();
 
@@ -213,7 +210,7 @@ public class XMLConfigBuilder {
             }
         }
         return mappers;
-    }
+    }*/
 
 
 

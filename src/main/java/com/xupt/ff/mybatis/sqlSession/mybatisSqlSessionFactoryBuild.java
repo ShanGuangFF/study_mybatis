@@ -1,5 +1,9 @@
 package com.xupt.ff.mybatis.sqlSession;
 
+import com.xupt.ff.mybatis.cfg.Configuration;
+import com.xupt.ff.mybatis.sqlSession.impl.implMybatisSqlSessionFactory;
+import com.xupt.ff.mybatis.utils.XMLConfigBuilder;
+
 import java.io.InputStream;
 
 /**
@@ -10,7 +14,14 @@ import java.io.InputStream;
 public class mybatisSqlSessionFactoryBuild {
 
 
+    /**
+     *
+     * @param config
+     * @return
+     * @action 根据字节输入流来构建一个sqlSessionFactory工厂
+     */
     public mybatisSqlSessionFactory build(InputStream config){
-        return null;
+        Configuration cfg = XMLConfigBuilder.loadConfiguration(config);
+        return new implMybatisSqlSessionFactory(cfg);
     };
 }
