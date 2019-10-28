@@ -1,6 +1,6 @@
 package com.xupt.ff.mybatis.sqlSession.impl;
 
-import com.xupt.ff.dao.IUserDao;
+
 import com.xupt.ff.mybatis.cfg.Configuration;
 import com.xupt.ff.mybatis.sqlSession.proxy.customizeMapperProxy;
 import com.xupt.ff.mybatis.sqlSession.mybatisSqlSession;

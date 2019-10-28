@@ -1,9 +1,9 @@
 package com.xupt.ff.mybatis.utils;
 
+import com.xupt.ff.mybatis.annotation.customizeSelect;
 import com.xupt.ff.mybatis.cfg.Configuration;
 import com.xupt.ff.mybatis.cfg.Mapper;
 import com.xupt.ff.mybatis.io.mybatisResources;
-import org.apache.ibatis.io.Resources;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -89,14 +89,14 @@ public class XMLConfigBuilder {
                     //给configuration中的mappers赋值
                     cfg.setMappers(mappers);
                 }else{
-                    /*System.out.println("使用的是注解");
+                    System.out.println("使用的是注解");
                     //表示没有resource属性，用的是注解
                     //获取class属性的值
                     String daoClassPath = mapperElement.attributeValue("class");
                     //根据daoClassPath获取封装的必要信息
                     Map<String,Mapper> mappers = loadMapperAnnotation(daoClassPath);
                     //给configuration中的mappers赋值
-                    cfg.setMappers(mappers);*/
+                    cfg.setMappers(mappers);
                 }
             }
             //返回Configuration
@@ -166,7 +166,7 @@ public class XMLConfigBuilder {
      * @param daoClassPath
      * @return
      */
-    /*private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
+    private static Map<String,Mapper> loadMapperAnnotation(String daoClassPath)throws Exception{
         //定义返回值对象
         Map<String,Mapper> mappers = new HashMap<String, Mapper>();
 
@@ -177,12 +177,12 @@ public class XMLConfigBuilder {
         //3.遍历Method数组
         for(Method method : methods){
             //取出每一个方法，判断是否有select注解
-            boolean isAnnotated = method.isAnnotationPresent(Select.class);
+            boolean isAnnotated = method.isAnnotationPresent(customizeSelect.class);
             if(isAnnotated){
                 //创建Mapper对象
                 Mapper mapper = new Mapper();
                 //取出注解的value属性值
-                Select selectAnno = method.getAnnotation(Select.class);
+                customizeSelect selectAnno = method.getAnnotation(customizeSelect.class);
                 String queryString = selectAnno.value();
                 mapper.setQueryString(queryString);
                 //获取当前方法的返回值，还要求必须带有泛型信息
@@ -210,7 +210,7 @@ public class XMLConfigBuilder {
             }
         }
         return mappers;
-    }*/
+    }
 
 
 
