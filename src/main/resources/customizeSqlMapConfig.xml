@@ -12,8 +12,8 @@
                 <!--配置连接数据库的4个基本信息-->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/cc_ff?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
-                <property name="username" value="cc_ff"/>
-                <property name="password" value="654321"/>
+                <property name="username" value="root"/>
+                <property name="password" value="ljfwww666"/>
             </dataSource>
         </environment>
     </environments>

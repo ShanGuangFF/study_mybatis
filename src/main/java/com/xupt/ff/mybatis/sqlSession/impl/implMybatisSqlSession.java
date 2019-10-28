@@ -2,11 +2,9 @@ package com.xupt.ff.mybatis.sqlSession.impl;
 
 import com.xupt.ff.dao.IUserDao;
 import com.xupt.ff.mybatis.cfg.Configuration;
-import com.xupt.ff.mybatis.cfg.Mapper;
-import com.xupt.ff.mybatis.proxy.customizeMapperProxy;
+import com.xupt.ff.mybatis.sqlSession.proxy.customizeMapperProxy;
 import com.xupt.ff.mybatis.sqlSession.mybatisSqlSession;
 import com.xupt.ff.mybatis.utils.DataSourceUtil;
-import org.apache.ibatis.binding.MapperProxy;
 
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
@@ -35,13 +33,13 @@ public class implMybatisSqlSession implements mybatisSqlSession {
      * @return
      */
     @Override
-    public <T> IUserDao getMapper(Class<T> daoInterfaceClass) {
-        Proxy.newProxyInstance(
+    public <T> T  getMapper(Class<T> daoInterfaceClass) {
+        return(T) Proxy.newProxyInstance(
                 daoInterfaceClass.getClassLoader(),
                 new Class[]{daoInterfaceClass},
                 new customizeMapperProxy(cfg.getMappers(),conn)
         );
-        return null;
+
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface mybatisSqlSession {
      * @param daoInterfaceClass dao接口的字节码
      * @return
      */
-    <T> IUserDao getMapper(Class<T> daoInterfaceClass);
+    <T> T  getMapper(Class<T> daoInterfaceClass);
 
     /**
      * 释放资源

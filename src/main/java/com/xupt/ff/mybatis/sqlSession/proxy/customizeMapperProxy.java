@@ -1,4 +1,4 @@
-package com.xupt.ff.mybatis.proxy;
+package com.xupt.ff.mybatis.sqlSession.proxy;
 
 import com.xupt.ff.mybatis.cfg.Mapper;
 import com.xupt.ff.mybatis.utils.Executor;
