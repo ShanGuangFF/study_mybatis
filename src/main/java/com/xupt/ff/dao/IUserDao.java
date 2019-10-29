@@ -18,4 +18,14 @@ public interface   IUserDao {
      * @action 保存用户信息
      */
     void saveUser(User user);
+
+    /**
+     * @action 更新用户信息
+     */
+    void updateUser(User user);
+
+    /**
+     * @action 删除用户
+     */
+    void deleteUser(Integer userId);
 }

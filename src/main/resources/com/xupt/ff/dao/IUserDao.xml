@@ -9,7 +9,17 @@
     </select>
     
     <!--配置保存用户信息-->
-    <insert id="saveUser">
+    <insert id="saveUser" parameterType="com.xupt.ff.domain.User">
         insert into user(username,address,sex,birthday) values(#{username},#{address},#{sex},#{birthday});
     </insert>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="com.xupt.ff.domain.User">
+        update user set username=#{username},address = #{address},sex = #{sex},birthday = #{birthday} where id = #{id};
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from  user where id = #{uid};
+    </delete>
 </mapper>

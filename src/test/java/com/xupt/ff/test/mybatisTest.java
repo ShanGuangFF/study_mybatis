@@ -120,4 +120,16 @@ public class mybatisTest {
 
         iUserDao.saveUser(user);
     }
+
+    @Test
+    public void testUpdate(){
+        User user = new User();
+        user.setAddress("西安市长安区");
+        user.setUsername("简十遇");
+        user.setId(51);
+        user.setSex("女");
+        user.setBirthday(new Date());
+
+        iUserDao.updateUser(user);
+    }
 }
