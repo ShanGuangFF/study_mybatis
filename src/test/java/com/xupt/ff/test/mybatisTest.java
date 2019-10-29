@@ -132,4 +132,9 @@ public class mybatisTest {
 
         iUserDao.updateUser(user);
     }
+
+    @Test
+    public void testDelete(){
+        iUserDao.deleteUser(50);
+    }
 }
