@@ -11,13 +11,20 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 public class mybatisTest {
+
+    private InputStream inputStream;
+    private SqlSession sqlSession;
+    private IUserDao iUserDao;
 
     /**
      * 使用代理对象，不写dao实现类
@@ -87,5 +94,30 @@ public class mybatisTest {
         //6.释放资源
         sqlSession.close();
         inputStream.close();
+    }
+
+    @Before//用于在测试方法之前执行
+    public void init() throws Exception{
+        inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSession = factory.openSession();
+        iUserDao = sqlSession.getMapper(IUserDao.class);
+    }
+
+    @After//用于在测试方法之后执行
+    public void destroy() throws Exception{
+        sqlSession.commit();
+        sqlSession.close();
+        inputStream.close();
+    }
+    @Test
+    public void testSave(){
+        User user = new User();
+        user.setAddress("西安市长安区");
+        user.setUsername("简十初");
+        user.setSex("男");
+        user.setBirthday(new Date());
+
+        iUserDao.saveUser(user);
     }
 }

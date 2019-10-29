@@ -7,4 +7,9 @@
     <select id="findAll" resultType="com.xupt.ff.domain.User">
         select * from user
     </select>
+    
+    <!--配置保存用户信息-->
+    <insert id="saveUser">
+        insert into user(username,address,sex,birthday) values(#{username},#{address},#{sex},#{birthday});
+    </insert>
 </mapper>

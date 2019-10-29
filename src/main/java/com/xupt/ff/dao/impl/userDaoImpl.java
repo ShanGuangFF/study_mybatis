@@ -25,4 +25,9 @@ public class userDaoImpl implements IUserDao {
         sqlSession.close();
         return userList;
     }
+
+    @Override
+    public void saveUser(User user) {
+
+    }
 }

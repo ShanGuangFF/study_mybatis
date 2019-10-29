@@ -13,4 +13,9 @@ public interface   IUserDao {
      */
     @customizeSelect("select * from user")//自定义注解
     List<User> findAll();
+
+    /**
+     * @action 保存用户信息
+     */
+    void saveUser(User user);
 }
