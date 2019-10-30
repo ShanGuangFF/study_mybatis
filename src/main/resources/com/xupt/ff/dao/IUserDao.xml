@@ -11,6 +11,10 @@
     <!--配置保存用户信息-->
     <insert id="saveUser" parameterType="com.xupt.ff.domain.User">
         insert into user(username,address,sex,birthday) values(#{username},#{address},#{sex},#{birthday});
+        <!--在插入用户后获取插入用户的id-->
+        <selectKey keyColumn="id" keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
     </insert>
 
     <!--更新用户信息-->
@@ -22,4 +26,27 @@
     <delete id="deleteUser" parameterType="java.lang.Integer">
         delete from  user where id = #{uid};
     </delete>
+
+    <!--根据id查询用户-->
+    <select id="findOne" parameterType="Int" resultType="com.xupt.ff.domain.User">
+        select * from user where id = #{uid};
+    </select>
+
+    <!--根据字符串模糊查询-->
+    <select id="findByName" parameterType="String" resultType="com.xupt.ff.domain.User">
+        <!--采用的PrepatedStatement的参数占位符 select * from user where username like ? -->
+        select * from user where username like #{username};
+        <!--java内部采用的是statement的对象字符串拼接sql select * from user where username like '王' -->
+        <!--select * from user where username like '%${value}%'; -->
+    </select>
+
+    <!--聚合函数查询用户数-->
+    <select id="findTotal" resultType="int">
+        select count(id) from user;
+    </select>
+
+    <!--通过传递javaBean对象对多个条件进行符复合查询-->
+    <select id="findByVo" parameterType="com.xupt.ff.domain.queryVo" resultType="com.xupt.ff.domain.User"  >
+        select * from user where username like #{user.username};
+    </select>
 </mapper>

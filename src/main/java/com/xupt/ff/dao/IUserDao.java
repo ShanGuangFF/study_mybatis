@@ -1,6 +1,7 @@
 package com.xupt.ff.dao;
 
 import com.xupt.ff.domain.User;
+import com.xupt.ff.domain.queryVo;
 import com.xupt.ff.mybatis.annotation.customizeSelect;
 import org.apache.ibatis.annotations.Select;
 
@@ -28,4 +29,29 @@ public interface   IUserDao {
      * @action 删除用户
      */
     void deleteUser(Integer userId);
+
+    /**
+     * @action 根据ID查询一个用户
+     * @param userId
+     * @return
+     */
+    User findOne(Integer userId);
+
+    /**
+     * @action 根据字符串模糊查询
+     * @param name
+     * @return
+     */
+    List<User> findByName(String name);
+
+    /**
+     * @action 查询所有用户的数目总和
+     * @return
+     */
+    int findTotal();
+
+    /**
+     * @action 通过传递javaBean对象，查询综合条件
+     */
+    List<User> findByVo(queryVo vo);
 }

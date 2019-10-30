@@ -2,6 +2,7 @@ package com.xupt.ff.dao.impl;
 
 import com.xupt.ff.dao.IUserDao;
 import com.xupt.ff.domain.User;
+import com.xupt.ff.domain.queryVo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -39,5 +40,25 @@ public class userDaoImpl implements IUserDao {
     @Override
     public void deleteUser(Integer userId) {
 
+    }
+
+    @Override
+    public User findOne(Integer userId) {
+        return null;
+    }
+
+    @Override
+    public List<User> findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public int findTotal() {
+        return 0;
+    }
+
+    @Override
+    public List<User> findByVo(queryVo vo) {
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.xupt.ff.test;
 import com.xupt.ff.dao.IUserDao;
 import com.xupt.ff.dao.impl.userDaoImpl;
 import com.xupt.ff.domain.User;
+import com.xupt.ff.domain.queryVo;
 import com.xupt.ff.mybatis.io.mybatisResources;
 import com.xupt.ff.mybatis.sqlSession.mybatisSqlSession;
 import com.xupt.ff.mybatis.sqlSession.mybatisSqlSessionFactory;
@@ -117,8 +118,9 @@ public class mybatisTest {
         user.setUsername("简十初");
         user.setSex("男");
         user.setBirthday(new Date());
-
+        System.out.println("保存前"+user);
         iUserDao.saveUser(user);
+        System.out.println("保存后"+user);
     }
 
     @Test
@@ -136,5 +138,35 @@ public class mybatisTest {
     @Test
     public void testDelete(){
         iUserDao.deleteUser(50);
+    }
+    
+    @Test
+    public void testFindOne(){
+        User user = iUserDao.findOne(51);
+        System.out.println(user);
+    }
+
+    @Test
+    public void testFindByName(){
+        List<User> userList = iUserDao.findByName("%王%");
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void test(){
+        System.out.println(iUserDao.findTotal());
+    }
+    @Test
+    public void testfindByVo(){
+        queryVo vo = new queryVo();
+        User user = new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+        List<User> userList = iUserDao.findByVo(vo);
+        for (User user1 : userList) {
+            System.out.println(user1);
+        }
     }
 }
