@@ -29,36 +29,61 @@ public class userDaoImpl implements IUserDao {
 
     @Override
     public void saveUser(User user) {
-
+        SqlSession sqlSession = factory.openSession();
+        sqlSession.insert("com.xupt.ff.dao.IUserDao.saveUser",user);
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     @Override
     public void updateUser(User user) {
-
+        SqlSession sqlSession = factory.openSession();
+        sqlSession.update("com.xupt.ff.dao.IUserDao.updateUser",user);
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     @Override
     public void deleteUser(Integer userId) {
-
+        SqlSession sqlSession = factory.openSession();
+        sqlSession.delete("com.xupt.ff.dao.IUserDao.deleteUser",userId);
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     @Override
     public User findOne(Integer userId) {
-        return null;
+        SqlSession sqlSession = factory.openSession();
+        User selectOne = sqlSession.selectOne("com.xupt.ff.dao.IUserDao.findOne", userId);
+        sqlSession.commit();
+        sqlSession.close();
+        return selectOne;
     }
 
     @Override
     public List<User> findByName(String name) {
-        return null;
+        SqlSession sqlSession = factory.openSession();
+        List<User> objects = sqlSession.selectList("com.xupt.ff.dao.IUserDao.findByName", name);
+        sqlSession.commit();
+        sqlSession.close();
+        return objects;
     }
 
     @Override
     public int findTotal() {
-        return 0;
+        SqlSession sqlSession = factory.openSession();
+        Integer one = sqlSession.selectOne("com.xupt.ff.dao.IUserDao.findTotal");
+        sqlSession.commit();
+        sqlSession.close();
+        return one;
     }
 
     @Override
     public List<User> findByVo(queryVo vo) {
-        return null;
+        SqlSession sqlSession = factory.openSession();
+        List<User> list = sqlSession.selectList("com.xupt.ff.dao.IUserDao.findByVo",vo);
+        sqlSession.commit();
+        sqlSession.close();
+        return list;
     }
 }
