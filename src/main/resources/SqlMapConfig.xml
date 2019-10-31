@@ -4,6 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--mybatis的主配置文件-->
 <configuration>
+    <!--    配置properties
+            可以在标签内部配置连接数据库的信息，也可以通过配置属性来引用外部配置文件信息
+            resource属性：
+                用于指定配置文件的位置，是按照类路径写法来写，并且必须存在与类路径下。
+                <properties resource="jdbcConfig.properties">
+            url属性：
+                要求按照url的写法来写地址
+                url： Uniform Resource Locator 统一资源定位符，它是可以唯一标识一个资源的位置。
+                    写法：
+                        http://localhost:8080/study_mybatis
+                        协议      主机     端口   uri
+
+                        uri: Uniform Resource Identifier 统一资源标识符，它是在应用中可以唯一定位一个资源的
+                        这种资源都基于file协议
+                        <properties url="file:///D:/project/study_mybatis/src/main/resources/jdbcConfig.properties">
+                -->
+
+    <properties resource="jdbcConfig.properties">
+
+    </properties>
+
+    <!--使用typeAliases配置别名，他只能配置domain类中的别名-->
+    <typeAliases>
+        <!--typeAliases 用于配置别名。type属性指定的是实体类的全限定类名。alias属性指定命，当指定了别名就不区分大小写-->
+        <!--<typeAlias type="com.xupt.ff.domain.User" alias="user"></typeAlias>-->
+
+        <!--package指定要配置别名的包名，当指定了之后，该包下的实体类都会注册别名，并且类名就是别名，不在区分大小写-->
+        <package name="com.xupt.ff.domain"></package>
+
+    </typeAliases>
     <!--配置环境-->
     <environments default="mysql">
         <!--配置mysql环境-->
@@ -13,21 +43,23 @@
             <!--配置连接池（数据源）-->
             <dataSource type="POOLED">
                 <!--配置连接数据库的4个基本信息-->
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/cc_ff?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
-                <property name="username" value="root"/>
-                <property name="password" value="ljfwww666"/>
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
 
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao的独立的配置文件-->
     <mappers>
-        <mapper resource="com/xupt/ff/dao/IUserDao.xml" />
+        <!--<mapper resource="com/xupt/ff/dao/IUserDao.xml" />-->
 
-        <!--如果使用注解的话不能产生IUserDao.xml,否则会产生错误-->
+        <!--package标签是用于指定dao接口所在的包，当指定了之后 就不需要在写mapper以及resource或者class了-->
+        <package name="com.xupt.ff.dao"/>
+
         <!--如果是使用注解来配置的话，此处应该用class属性指定被注解的dao的全限定类名-->
-<!--        <mapper class="com.xupt.ff.dao.IUserDao"/>-->
+        <!--<mapper class="com.xupt.ff.dao.IUserDao"/>-->
     </mappers>
 
 </configuration>
