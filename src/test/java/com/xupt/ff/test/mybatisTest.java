@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -167,6 +168,19 @@ public class mybatisTest {
         List<User> userList = iUserDao.findByVo(vo);
         for (User user1 : userList) {
             System.out.println(user1);
+        }
+    }
+
+    @Test
+    public void testFindByCondition(){
+        queryVo vo = new queryVo();
+        ArrayList<Integer> idList = new ArrayList<>();
+        idList.add(51);
+        idList.add(52);
+        vo.setIdList(idList);
+        List<User> userList = iUserDao.findByCondition(vo);
+        for (User user : userList) {
+            System.out.println(user);
         }
     }
 }

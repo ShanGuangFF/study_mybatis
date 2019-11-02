@@ -54,4 +54,6 @@ public interface   IUserDao {
      * @action 通过传递javaBean对象，查询综合条件
      */
     List<User> findByVo(queryVo vo);
+
+    List<User> findByCondition(queryVo vo);
 }

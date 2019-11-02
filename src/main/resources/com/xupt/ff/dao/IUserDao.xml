@@ -49,4 +49,16 @@
     <select id="findByVo" parameterType="queryVo" resultType="User"  >
         select * from user where username like #{user.username};
     </select>
+    
+    <!--动态sql ，使用where，if，foreach查询Id集合中用户列表-->
+    <select id="findByCondition" parameterType="queryVo" resultType="User">
+        select * from user
+        <where>
+            <if test="idList != null and idList.size() > 0">
+                <foreach collection="idList" open = "and id in (" close=")" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
 </mapper>

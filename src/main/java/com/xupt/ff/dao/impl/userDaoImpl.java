@@ -86,4 +86,9 @@ public class userDaoImpl implements IUserDao {
         sqlSession.close();
         return list;
     }
+
+    @Override
+    public List<User> findByCondition(queryVo vo) {
+        return null;
+    }
 }
