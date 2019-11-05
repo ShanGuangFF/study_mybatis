@@ -21,9 +21,14 @@
                         <properties url="file:///D:/project/study_mybatis/src/main/resources/jdbcConfig.properties">
                 -->
 
-    <properties resource="jdbcConfig.properties">
+    <properties resource="jdbcConfig.properties"></properties>
 
-    </properties>
+    <!--配置延迟加载-->
+    <settings>
+        <!--开启全局延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
 
     <!--使用typeAliases配置别名，他只能配置domain类中的别名-->
     <typeAliases>

@@ -9,17 +9,15 @@
         <id property="id" column="aid"></id>
         <result property="money" column="money"></result>
         <result property="uid" column="uid"></result>
-        <!--一对一的关系映射：配置封装user内容-->
-        <association property="user" column="uid">
-            <id property="id" column="id"></id>
-            <result property="username" column="username"></result>
-            <result property="address" column="address"></result>
-            <result property="sex" column="sex"></result>
-            <result property="birthday" column="birthday"></result>
+        <!--一对一的关系映射：配置封装user内容
+            select属性指定的内容，查询用户的唯一标识
+            column属性指定的内容，用户根据id查询时，所需要参数的值
+            -->
+        <association property="user" column="uid" javaType="user" select="com.xupt.ff.dao.IUserDao.findOne">
         </association>
     </resultMap>
 
     <select id="findAll" resultMap="accountUserMap">
-        select u.*,a.id as aid ,a.uid,a.money from account a, user u where u.id = a.uid;
+        select * from account;
     </select>
 </mapper>

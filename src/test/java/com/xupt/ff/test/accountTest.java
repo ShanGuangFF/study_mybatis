@@ -39,9 +39,9 @@ public class accountTest {
     @Test
     public void testFindALl(){
         List<Account> accountList = iAccountDao.findAll();
-        for (Account account : accountList) {
-            System.out.println(account);
-            System.out.println(account.getUser());
-        }
+        // for (Account account : accountList) {
+        //     System.out.println(account);
+        //     System.out.println(account.getUser());
+        // }
     }
 }
