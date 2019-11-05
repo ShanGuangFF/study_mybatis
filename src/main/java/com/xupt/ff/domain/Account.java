@@ -11,8 +11,15 @@ public class Account implements Serializable {
     private int id;
     private int uid;
     private double money;
-    private User user;
+    private User user;//从表实体应该包含一个主表实体的引用
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getUid() {
         return uid;

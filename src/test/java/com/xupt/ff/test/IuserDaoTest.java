@@ -1,7 +1,7 @@
 package com.xupt.ff.test;
 
-import com.xupt.ff.dao.IAccountDao;
-import com.xupt.ff.domain.Account;
+import com.xupt.ff.dao.IUserDao;
+import com.xupt.ff.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -14,19 +14,19 @@ import java.util.List;
 
 /**
  * @author cc_ff
- * @create 2019-11-02 下午4:34
+ * @create 2019-11-05 下午4:52
  * @action
  */
-public class accountTest {
+public class IuserDaoTest {
     private InputStream inputStream;
     private SqlSession sqlSession;
-    private IAccountDao iAccountDao;
+    private IUserDao iUserDao;
 
     @Before
-    public void init() throws Exception{
+    public void init()throws Exception{
         inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
         sqlSession = new SqlSessionFactoryBuilder().build(inputStream).openSession();
-        iAccountDao = sqlSession.getMapper(IAccountDao.class);
+        iUserDao = sqlSession.getMapper(IUserDao.class);
     }
 
     @After
@@ -37,11 +37,12 @@ public class accountTest {
     }
 
     @Test
-    public void testFindALl(){
-        List<Account> accountList = iAccountDao.findAll();
-        for (Account account : accountList) {
-            System.out.println(account);
-            System.out.println(account.getUser());
+    public void testfindALL(){
+        List<User> userList = iUserDao.findAll();
+        for (User user : userList) {
+            System.out.println(user);
+            System.out.println(user.getAccountList());
+            System.out.println(user.getRoleList());
         }
     }
 }

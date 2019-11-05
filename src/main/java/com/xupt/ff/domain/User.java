@@ -2,6 +2,7 @@ package com.xupt.ff.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class User implements Serializable {
     private int id;
@@ -9,6 +10,24 @@ public class User implements Serializable {
     private Date birthday;
     private String  sex;
     private String  address;
+    private List<Account> accountList;//一对多的关系映射：主表实体应包含从表实体的集合引用
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
+    }
 
     public int getId() {
         return id;
